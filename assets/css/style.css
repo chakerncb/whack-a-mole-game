@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PT Serif', serif;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+#endScore , #endTopScore {
+    font-family: 'Jersey 10', cursive;
+}
+
+body {
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+ }
+
+ .sky img{
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+table {
+    position: absolute;
+    width: 80%;
+    max-width: 600px;
+    top: 74%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-spacing: 10px; /* Add space between holes */
+}
+
+/* start bar*/
+
+.startBar {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    z-index: 10; /* Ensure startBar is on top */
+    transition: opacity 0.5s ease, visibility 0.5s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+    /* make the page blur but the start bar must be not blured */
+    backdrop-filter: none;
+}
+
+.startBar .startImg {
+    width:35%;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+body.no-blur::before {
+    backdrop-filter: none;
+    z-index: 0;
+}
+
+
+.startBtn {
+    background-color: #8b451300;
+    padding: 0px 10px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    text-align: center;
+}
+
+.settingsBtn {
+    background-color: #8b451300;
+    padding: 0px 2px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    text-align: center;
+}
+/* /////////////// */
+
+.settingsBar {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 100; /* Ensure topBar is on top */
+    transition: opacity 0.5s ease, visibility 0.5s ease-in-out;
+    visibility: visible;
+    display: none;
+}
+
+.startBar.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.settingsBar h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+ h2 {
+    margin: 10px 10px;
+    font-size: 1.5em;
+    color: #714E63;
+}
+
+.settingsBar label, .settingsBar input {
+    margin: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.settingsBar .closeBtn {
+    background-color: #8b451300;
+    padding: 0px 2px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    text-align: center;
+    position: absolute;
+    top: 6%;
+    right: 3px;
+    transform: translate(0, -50%);
+}
+
+.score {
+    position: absolute;
+    top: 3%;
+    right: 50%;
+    transform: translate(50%, 0);
+    color: #000000;
+    padding: 5px;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: 'Jersey 10', cursive;
+}
+
+.score h2 {
+    font-family: 'Jersey 10', cursive;
+
+}
+
+table, td {
+    cursor: url('../images/hamer.png') 16 16, auto !important;
+}
+
+ td {
+    width: calc(200px / var(--cols));
+    height: calc(200px / var(--rows));
+    border: 5px solid #8B4513; /* Brown border to resemble dirt */
+    border-radius: 50%;
+    background-color: #A0522D; /* Darker brown background */
+    text-align: center;
+    font-size: calc(100px / var(--cols));
+    cursor: pointer;
+    position: relative;
+    margin: 10px; /* Added margin to increase gap */
+    z-index: 1000;
+}
+
+td img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #000000;
+    top: 0;
+    left: 0;
+    display: none;
+    transition: all 0.5s;
+    z-index: 1000;
+}
+
+td img.show {
+    display: block;
+    z-index: 1000
+}
+
+td:hover {
+    background-color: #8B4513; /* Darker brown on hover */
+}
+
+.time {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    background-color: #00000000;
+    color: #000000;
+    padding: 5px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.quickActions {
+    position: absolute;
+    background-color: #00000000;
+    color: #000000af;
+    padding: 5px;
+    font-size: 2em;
+    z-index: 1000;
+    top: -3px;
+    right: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.endImg {
+    width: 40%;
+    height: auto;
+    /* display: none; */
+}
+
+.endBar {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    z-index: 10; /* Ensure startBar is on top */
+    transition: opacity 0.5s ease, visibility 0.5s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+    /* make the page blur but the start bar must be not blured */
+    backdrop-filter: none;
+    display: none;
+}
+
+#endScore {
+    position: absolute;
+    z-index: 1000;
+    top: 38.5%;
+    left: 60.20%;
+    transform: translate(-50%, -50%);
+    font-size: 1.7em;
+    color: #000000;
+}
+
+#endTopScore {
+    position: absolute;
+    z-index: 1000;
+    top: 55%;
+    left: 62.09%;
+    transform: translate(-50%, -50%);
+    font-size: 1.7em;
+    color: #000000;
+}
+
+.animation {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+    width: 25%;
+    height: 45%;
+    z-index: 1000;
+}
+
+.animationImg {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.startAnimImg {
+    width: 100%;
+    height: 100%;
+}
+
+.restartBtn {
+    left: 43.5%;
+    width: 15%;
+    height: 10%;
+    top: 70%;
+    position: absolute;
+    border: none;
+}
+
+.restartBtn img {
+    width: 100%;
+    height: 100%;
+}
+
+.restartBtn:hover {
+    cursor: pointer;
+}
+
+.restartBtn:active {
+    transform: scale(0.9);
+}
+
+.restartBtn:focus {
+    outline: none;
+}
+
+#saveSettings {
+    border: slategrey 2px solid;    
+    border-radius: 5px;
+    background-color: #35e022;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 7%;
+    transform: translate(-50%, 0);
+    font-size: 1em;
+    color: #000000;
+    padding: 5px;
+    font-family: 'Jersey 10', cursive;
+    z-index: 1000;
+}
+
+.footer a{
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Jersey 10', cursive;
+}
