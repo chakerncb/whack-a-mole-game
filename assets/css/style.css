@@ -369,3 +369,10 @@ td:hover {
     text-decoration: none;
     font-family: 'Jersey 10', cursive;
 }
+
+.social a {
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Jersey 10', cursive;
+    padding: 5px;
+} 

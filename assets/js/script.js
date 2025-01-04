@@ -1,3 +1,4 @@
+// Function to get a random cell ID
 function getRandomCellId() {
     const rows = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rows'));
     const cols = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--cols'));
@@ -6,12 +7,10 @@ function getRandomCellId() {
     return `${row}${col}`;
 }
 
+// Function to show a random mole
 function showRandomMole() {
-    // Hide all moles
     const cells = document.querySelectorAll('td img');
     cells.forEach(cell => cell.style.display = 'none');
-
-    // Show a random mole
     const randomCellId = getRandomCellId();
     const randomCell = document.getElementById(randomCellId).querySelector('img');
     randomCell.style.display = 'block';
@@ -21,11 +20,12 @@ let gameInterval;
 let gameTimeout;
 let timeInterval;
 
+// Function to create mole holes
 function createMoleHoles(rows, cols) {
     var rows = rows;
     var cols = cols;
     const table = document.querySelector('table');
-    table.innerHTML = ''; // Clear existing cells
+    table.innerHTML = '';
     document.documentElement.style.setProperty('--rows', rows);
     document.documentElement.style.setProperty('--cols', cols);
 
@@ -45,12 +45,14 @@ function createMoleHoles(rows, cols) {
     }
 }
 
+// Function to format time
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
+// Function to start the game with given settings
 function startGame(duration, rows, cols, speed) {
     score = 0;
     document.getElementById('endScore').innerHTML = score;
@@ -77,6 +79,7 @@ function startGame(duration, rows, cols, speed) {
 
 let topScore = 0;
 
+// Function to update the top score
 function updateTopScore() {
     if (score > topScore) {
         topScore = score;
@@ -84,6 +87,7 @@ function updateTopScore() {
     }
 }
 
+// Function to end the game
 function endGame() {
     clearInterval(gameInterval);
     clearInterval(timeInterval);
@@ -92,7 +96,7 @@ function endGame() {
     document.body.classList.remove('no-blur');
     document.getElementById('endBar').style.display = 'block';
     document.getElementById('endScore').innerHTML = score;
-    if (topScore > 0) {
+    if (score > 0) {
         document.getElementById('animationImg').style.display = 'block';
     }
     else {
@@ -100,6 +104,7 @@ function endGame() {
     }
 }
 
+// Function to restart the game
 function restartGame() {
     clearInterval(gameInterval);
     clearTimeout(gameTimeout);
@@ -120,6 +125,7 @@ function restartGame() {
 
 let score = 0;
 
+// Function to handle cell click
 function clickCell(a, b) {
     const scoreElement = document.getElementById('endScore');
     const cellId = `${a}${b}`;
@@ -140,14 +146,17 @@ function clickCell(a, b) {
     }
 }
 
+// Function to show the settings panel
 function showSettings() {
     document.getElementById('settingsBar').style.display = 'block';
 }
 
+// Function to hide the settings panel
 function hideSettings() {
     document.getElementById('settingsBar').style.display = 'none';
 }
 
+// Function to go to the home screen
 function goHome() {
     location.reload();
 }
