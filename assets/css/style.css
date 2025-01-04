@@ -370,6 +370,10 @@ td:hover {
     font-family: 'Jersey 10', cursive;
 }
 
+.social {
+  padding: 5%;
+}
+
 .social a {
     color: #000000;
     text-decoration: none;
